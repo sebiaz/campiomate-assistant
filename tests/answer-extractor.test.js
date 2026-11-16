@@ -62,25 +62,25 @@ describe('AnswerExtractor', () => {
     test('detects sum', () => {
       const result = extractor.solveNumeric('Calculează suma a 5 și 3');
       expect(result.answer).toBe('8');
-      expect(result.confidence).toBe(0.7);
+      expect(result.confidence).toBe(0.75);
     });
 
     test('detects difference', () => {
       const result = extractor.solveNumeric('Care este diferența dintre 10 și 4?');
       expect(result.answer).toBe('6');
-      expect(result.confidence).toBe(0.7);
+      expect(result.confidence).toBe(0.75);
     });
 
     test('detects product', () => {
       const result = extractor.solveNumeric('Produsul lui 6 și 7 este?');
       expect(result.answer).toBe('42');
-      expect(result.confidence).toBe(0.7);
+      expect(result.confidence).toBe(0.75);
     });
 
     test('detects division', () => {
       const result = extractor.solveNumeric('Împarte 20 la 4');
       expect(result.answer).toBe('5');
-      expect(result.confidence).toBe(0.7);
+      expect(result.confidence).toBe(0.75);
     });
 
     test('returns first number as fallback', () => {
@@ -110,6 +110,71 @@ describe('AnswerExtractor', () => {
       expect(result.answer).toBeNull();
       expect(result.confidence).toBe(0);
       expect(result.reasoning).toContain('human input');
+    });
+  });
+
+  describe('Romanian math patterns', () => {
+    test('detects Romanian sum (suma)', () => {
+      const result = extractor.solveNumeric('Calculează suma a 5 și 3');
+      expect(result.answer).toBe('8');
+    });
+
+    test('detects Romanian difference (diferența)', () => {
+      const result = extractor.solveNumeric('Care este diferența dintre 10 și 4?');
+      expect(result.answer).toBe('6');
+    });
+
+    test('detects Romanian product (produsul)', () => {
+      const result = extractor.solveNumeric('Produsul lui 6 și 7 este?');
+      expect(result.answer).toBe('42');
+    });
+
+    test('detects Romanian division (împărțire)', () => {
+      const result = extractor.solveNumeric('Împarte 20 la 4');
+      expect(result.answer).toBe('5');
+    });
+
+    test('detects power (puterea)', () => {
+      const result = extractor.solveNumeric('2 la puterea 3');
+      expect(result.answer).toBe('8');
+    });
+
+    test('detects percentage (procent)', () => {
+      const result = extractor.solveNumeric('20 procent din 50');
+      expect(result.answer).toBe('10');
+    });
+
+    test('detects area of rectangle', () => {
+      const result = extractor.solveNumeric('Aria dreptunghiului 5 și 3');
+      expect(result.answer).toBe('15');
+    });
+
+    test('detects perimeter of square', () => {
+      const result = extractor.solveNumeric('Perimetru pătrat 4');
+      expect(result.answer).toBe('16');
+    });
+
+    test('simplifies fraction (simplifică)', () => {
+      const result = extractor.solveFraction('Simplifică fracția 4/8');
+      expect(result.answer).toBe('1/2');
+    });
+
+    test('solves simple equation x + a = b', () => {
+      const result = extractor.solveNumeric('Găsește x: x + 5 = 12');
+      expect(result.answer).toBe('7');
+    });
+  });
+
+  describe('solveGenericMath', () => {
+    test('handles unknown type with Romanian patterns', () => {
+      const result = extractor.solveGenericMath('Calculează suma a 7 și 5');
+      expect(result.answer).toBe('12');
+      expect(result.confidence).toBeGreaterThan(0.5);
+    });
+
+    test('handles unknown type with basic operations', () => {
+      const result = extractor.solveGenericMath('Adună 3 4 5');
+      expect(result.answer).toBe('12');
     });
   });
 });

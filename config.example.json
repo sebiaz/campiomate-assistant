@@ -7,27 +7,27 @@
   },
   "selectors": {
     "trainingPage": {
-      "table": "table.cm-training-table",
-      "rows": "tr.cm-training-row",
-      "worksheetId": "data-worksheet",
-      "topic": ".cm-training-topic",
-      "grade": ".cm-training-grade",
-      "level": ".cm-training-level",
-      "round": ".cm-training-round"
+      "table": "table, .training-table, .exercises-table, table[class*='training'], table[class*='exercise']",
+      "rows": "tr[data-worksheet], tr[class*='training'], tr[class*='exercise'], tbody tr",
+      "worksheetId": "data-worksheet, data-id, data-exercise-id",
+      "topic": "td:first-child, .topic, .title, [class*='topic'], [class*='title']",
+      "grade": "td:nth-child(2), .grade, [class*='grade']",
+      "level": "td:nth-child(3), .level, .division, [class*='level'], [class*='division']",
+      "round": "td:nth-child(4), .round, [class*='round']"
     },
     "exercisePage": {
-      "questionContainer": "[data-exercise], .exercise-content, .question-container",
-      "questionText": ".question-text, .exercise-question, [data-question]",
-      "answerInput": "input[type='text'], textarea, .answer-input",
-      "multipleChoice": "input[type='radio'], .choice-option",
-      "checkboxes": "input[type='checkbox']",
-      "submitButton": "button[type='submit'], .btn-submit, button:has-text('Salvează'), button:has-text('Trimite')",
-      "nextButton": "button:has-text('Următorul'), button:has-text('Next'), .btn-next",
+      "questionContainer": "[data-exercise], .exercise-content, .question-container, .problem-statement, .enunt, .exercise-body, main, .content",
+      "questionText": ".question-text, .exercise-question, [data-question], .enunt, .problem-text, .statement, h1, h2, h3, .question, p",
+      "answerInput": "input[type='text'], input[type='number'], textarea, .answer-input, [name*='answer'], [id*='answer'], input:not([type='hidden']):not([type='submit']):not([type='button'])",
+      "multipleChoice": "input[type='radio'], .choice-option, [class*='choice'], [class*='option'], label[for*='radio']",
+      "checkboxes": "input[type='checkbox'], [class*='checkbox']",
+      "submitButton": "button[type='submit'], .btn-submit, button:has-text('Salvează'), button:has-text('Trimite'), button:has-text('Submit'), button:has-text('Răspunde'), button:has-text('Verifică'), input[type='submit'], button[class*='submit'], button[class*='save']",
+      "nextButton": "button:has-text('Următorul'), button:has-text('Next'), .btn-next, button:has-text('Continuă'), a:has-text('Următorul')",
       "confidenceIndicator": ".confidence, .answer-confidence"
     },
     "navigation": {
-      "backLink": "a:has-text('Înapoi'), a:has-text('Back')",
-      "trainingLink": "a:has-text('Pregătire')"
+      "backLink": "a:has-text('Înapoi'), a:has-text('Back'), a[href*='training']",
+      "trainingLink": "a:has-text('Pregătire'), a:has-text('Training'), a[href*='training']"
     }
   },
   "answerTypes": {
