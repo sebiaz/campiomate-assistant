@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Browser binaries
+*.local-chromium/
+.playwright/
+
+# Runtime data
+data/
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Config (user-specific)
+config.json
+
+# Coverage
+coverage/
+
+# Misc
+*.pid
+*.tmp

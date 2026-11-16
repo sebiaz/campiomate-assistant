@@ -1,0 +1,33 @@
+{
+  "name": "campiomate-assistant",
+  "version": "1.0.0",
+  "description": "Local browser assistant for solving CampioMate.ro exercises",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config=jest.config.js",
+    "dry-run": "node src/index.js --dry-run",
+    "install-browsers": "npx playwright install chromium"
+  },
+  "keywords": [
+    "campiomate",
+    "browser-automation",
+    "playwright",
+    "education"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.45.0",
+    "dotenv": "^16.4.5",
+    "winston": "^3.13.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.12"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

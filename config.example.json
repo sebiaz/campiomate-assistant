@@ -1,0 +1,59 @@
+{
+  "baseUrl": "https://campiomate.ro",
+  "browser": {
+    "headless": false,
+    "slowMo": 100,
+    "viewport": { "width": 1280, "height": 720 }
+  },
+  "selectors": {
+    "trainingPage": {
+      "table": "table.cm-training-table",
+      "rows": "tr.cm-training-row",
+      "worksheetId": "data-worksheet",
+      "topic": ".cm-training-topic",
+      "grade": ".cm-training-grade",
+      "level": ".cm-training-level",
+      "round": ".cm-training-round"
+    },
+    "exercisePage": {
+      "questionContainer": "[data-exercise], .exercise-content, .question-container",
+      "questionText": ".question-text, .exercise-question, [data-question]",
+      "answerInput": "input[type='text'], textarea, .answer-input",
+      "multipleChoice": "input[type='radio'], .choice-option",
+      "checkboxes": "input[type='checkbox']",
+      "submitButton": "button[type='submit'], .btn-submit, button:has-text('Salvează'), button:has-text('Trimite')",
+      "nextButton": "button:has-text('Următorul'), button:has-text('Next'), .btn-next",
+      "confidenceIndicator": ".confidence, .answer-confidence"
+    },
+    "navigation": {
+      "backLink": "a:has-text('Înapoi'), a:has-text('Back')",
+      "trainingLink": "a:has-text('Pregătire')"
+    }
+  },
+  "answerTypes": {
+    "boolean": { "icon": "icon-answer-boolean", "handler": "boolean" },
+    "decimal": { "icon": "icon-answer-decimal", "handler": "numeric" },
+    "fraction": { "icon": "icon-answer-fraction", "handler": "fraction" },
+    "integer": { "icon": "icon-answer-integer", "handler": "numeric" },
+    "natural": { "icon": "icon-answer-natural", "handler": "numeric" },
+    "numberFraction": { "icon": "icon-answer-number-fraction", "handler": "fraction" },
+    "periodic": { "icon": "icon-answer-periodic", "handler": "text" },
+    "text": { "icon": "icon-answer-text", "handler": "text" }
+  },
+  "ai": {
+    "enabled": false,
+    "provider": "local",
+    "model": "gpt-4o-mini",
+    "apiKeyEnv": "OPENAI_API_KEY",
+    "maxTokens": 500,
+    "temperature": 0.1
+  },
+  "logging": {
+    "level": "info",
+    "file": "logs/campiomate-assistant.log"
+  },
+  "autoSubmit": false,
+  "dryRun": false,
+  "timeout": 30000,
+  "retryAttempts": 3
+}
